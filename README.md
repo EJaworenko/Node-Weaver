@@ -1,4 +1,3 @@
-### Node Weaver is a toolset that is intended to ease the workflow of Houdini TDs. Whether they are building tools or customizing Houdini.
 # Making Tools
 ## Tool Maker Tools
 A tool for making tools, automating tedious processes and improving TD quality of life. Included is an HDA with the following functions:
