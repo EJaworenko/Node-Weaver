@@ -1,21 +1,44 @@
-# Making Tools
-## Tool Maker Tools
-A tool for making tools, automating tedious processes and improving TD quality of life. Included is an HDA with the following functions:
-- Generator for menu and action button scripts
-- Convert Copy to Points to Instancing: Create the necessary nodes to convert a copy to points setup into an instanced setup. 
-There is also a Node Weaver shelf with:
-- A shelf tool to print out all callback scripts, default value expressions, and menu scripts in a node.  
-A right-click menu item that makes it possible to set node colors with the color wheel window.  
-# Customizing Houdini
-## Color Palette Configurator HDA
-A convenience utility for making adjustments or additions to the 36 node colours you get in the network view palette by default in Houdini. By default it is quite tedious to modify. This tool allows you to rearrange colors, change them with ease, and add new ones through a few methods (manual, gradient, and hex-code). The gradient can be created manually, by sampling the screen, or by using a cosine formula that is surprisingly good at generating pleasing gradients (Credit to Inigo Quilez for the formula https://iquilezles.org/articles/palettes/).
-## Custom Node Shape Creator HDA
-While we use nodes all the time in Houdini, the process of creating custom shapes for them is not well documented nor straightforward. Credit to Simon Fiedler and Bastian Schiffer for doing the initial exploration year ago. https://vimeo.com/221182957
-The aim of this tool is to make the process of creating custom node shapes as easy as possible. Examples are provided for educational purposes and to show the capabilities of the tool. Alongside being able to adjust any element of the node shape, you can also visualize the tool in a large variety of ways to make sure it looks exactly how you want it to when you export. 
-The documentation has information about where to put your custom node shape files, how to make them blend well with the default node shapes, and how to deal with wire curvature. The tool itself was designed in a way to minimize the actual steps an artist takes to create their shapes and tries to automate things where possible.
-With any luck, we should be seeing more custom node shapes in the future!
-## Inspect Node Shape File HDA
-If you want to analyze a node shape file, this will open it and allow you to see the prims that make it up. You can see the stats of it, modify elements, and even feed it back into the Node Shape Creator to output a new node with the changes you made. 
-This node has a bunch of stats about the default node shapes in Houdini as well. You can use these when creating your own node shapes if you want to make sure that your shapes integrate well!
-# Installation
-- In Progress -
+# Node Weaver
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/EJaworenko/Node-Weaver)](https://github.com/EJaworenko/Node-Weaver/releases)
+[![Houdini 19.5](https://img.shields.io/badge/Houdini-19.5%2B-orange)](https://www.sidefx.com/download/)
+
+Node Weaver is a toolset for Houdini TDs that streamlines tool creation and Houdini customization workflows.
+
+## Quick Start
+    git clone https://github.com/EJaworenko/Node-Weaver.git
+
+## Prerequisites
+- Houdini 19.5 or later
+- Python 3.7+
+
+## Features
+
+### TD Tools
+- **Tool Maker HDA**: Generate menu scripts, convert copy-to-points setups
+- **Node Weaver Shelf**: Access node scripts and expressions
+- **Right-Click Menus**: Multiparm reference generation, mass parameter connections
+- [Learn more about TD Tools](docs/features/td-tools.md)
+
+### Customization Tools
+- **Colour Palette Configurator**: Modify Houdini's node color palette
+- **Custom Node Shape Creator**: Create and modify node shapes
+- **Node Shape Inspector**: Analyze and modify node shape files
+- [Learn more about Customization Tools](docs/features/customization.md)
+
+## Basic Installation
+1. Download Node Weaver:
+   - Via Git: `git clone https://github.com/EJaworenko/Node-Weaver.git`
+   - Direct download: [Latest Release](release-link)
+2. Install as Houdini package
+[Detailed Installation Guide](docs/installation.md)
+
+## Documentation
+- [Complete Installation Guide](docs/installation.md)
+- [Feature Documentation](docs/features/)
+- [Troubleshooting](docs/troubleshooting.md)
+- [Git Guide for New Users](docs/git-guide.md)
+
+## License
+Node Weaver is licensed under the GNU General Public License v3.0. See [LICENSE](LICENSE) for details.
