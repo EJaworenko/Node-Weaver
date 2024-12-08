@@ -50,13 +50,13 @@ Node Weaver is a comprehensive toolset for Houdini Technical Directors that stre
 
 ### Simple Download (Recommended for Beginners)
 1. Download the [latest release](https://github.com/EJaworenko/Node-Weaver/releases)
-2. Follow our [simple installation guide](docs/installation.md#simple-installation)
+2. Follow my [simple installation guide](docs/installation.md#simple-installation)
 
 ### Git Installation (For Automatic Updates)
 ```bash
 git clone https://github.com/EJaworenko/Node-Weaver.git
 ```
-Then follow our [Git-based installation guide](docs/installation.md#alternative-installation-method)
+Then follow my [Git-based installation guide](docs/installation.md#alternative-installation-method)
 
 ## New to Git?
 **Don't worry!** I've created a [beginner-friendly Git guide](docs/git-guide.md) that explains:
@@ -76,8 +76,8 @@ If you're not comfortable with Git yet, use the [Simple Download](#simple-downlo
 
 ## Contributing
 
-I welcome contributions of all sizes! New to open source? Check out:
-1. Our [Git Guide](docs/git-guide.md) for version control basics
+The project is small, but I welcome contributions of any kind! If you're new to open source check out:
+1. My [Git Guide](docs/git-guide.md) for version control basics
 2. GitHub's guide on [Creating a Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 3. The [issues page](https://github.com/EJaworenko/Node-Weaver/issues) for beginner-friendly tasks
 

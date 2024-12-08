@@ -1,7 +1,6 @@
 # Project structure files
 generate_project_structure_txt.py
 project_structure.txt
-project_struct.txt
 
 # Python cache
 __pycache__/

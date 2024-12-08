@@ -42,4 +42,4 @@ Welcome to the Node Weaver documentation! This guide will help you get started w
 2. Search [existing issues](https://github.com/EJaworenko/Node-Weaver/issues)
 3. [Open a new issue](https://github.com/EJaworenko/Node-Weaver/issues/new)
 
-Remember: No question is too basic! I'm here to help.
+I appreciate all feedback and bug reports - they help make these tools better!
