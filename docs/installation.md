@@ -1,46 +1,89 @@
-Navigation:
-- [← Back to main repository](https://github.com/EJaworenko/Node-Weaver)
-- [View all documentation](docs)
-
+<!-- omit in toc -->
 # Installation Guide
 
-This guide will help you install Node Weaver in Houdini. There are two ways to download Node Weaver, but we'll focus on the simpler direct download method first.
+> [← Back to main documentation](../README.md)
 
-**Important Notes:**
-- **DO NOT** save it to your Houdini program directory (C:/Program Files/Side Effects Software/Houdini XX.X.XXX on Windows)
-- For network drives, mapping to a drive letter is highly recommended
+This guide walks you through installing Node Weaver in Houdini. Choose the installation method that works best for you.
 
-## Simple Installation (Recommended for Most Users)
+<!-- omit in toc -->
+## Table of Contents
+- [Quick Start](#quick-start)
+- [Prerequisites](#prerequisites)
+- [Method 1: Simple Installation](#method-1-simple-installation)
+  - [Step 1: Download Node Weaver](#step-1-download-node-weaver)
+  - [Step 2: Extract Files](#step-2-extract-files)
+  - [Step 3: Set Up the Package](#step-3-set-up-the-package)
+  - [Step 4:Start Houdini](#step-4start-houdini)
+- [Method 2: Git Installation](#method-2-git-installation)
+- [Verifying Installation](#verifying-installation)
+- [Common Installation Paths](#common-installation-paths)
+  - [Windows](#windows)
+  - [Mac](#mac)
+  - [Linux](#linux)
+- [Troubleshooting](#troubleshooting)
+  - [Can't Find Preferences Folder?](#cant-find-preferences-folder)
+  - [Tools Not Showing Up?](#tools-not-showing-up)
+  - [Permission Issues?](#permission-issues)
+  - [Need More Help?](#need-more-help)
+
+## Quick Start
+
+1. Download Node Weaver
+2. Put it somewhere on your computer (a dedicated Houdini tools folder ideally)
+3. Add it as a Houdini package
+4. Start Houdini and check that it installed
+
+Need more detail? Read on!
+
+## Prerequisites
+
+- Houdini 19.5 or later
+- Python 3.7+
+- Admin rights on your computer (for some installation locations)
+- Git (optional, only for Method 2)
+
+## Method 1: Simple Installation
 
 ### Step 1: Download Node Weaver
 1. Visit the [releases page](https://github.com/EJaworenko/Node-Weaver/releases)
-2. Find the latest release at the top of the page
-3. Click on "Source code (zip)" under Assets
-4. Save the zip file to your computer
-5. Extract the zip file to a location of your choice
-    - You can put it anywhere except your Houdini preferences folder. Ideally, you have a folder where you store all your Houdini plugin content.
-    - Good locations include:
-        - Windows: C:/Users/YourUsername/Documents/NodeWeaver
-        - Mac: /Users/YourUsername/Documents/NodeWeaver
-        - Linux: /home/YourUsername/NodeWeaver
+2. Find the latest release
+3. Click "Source code (zip)" under Assets
+4. Save the zip file anywhere
 
-### Step 2: Set Up the Package
+### Step 2: Extract Files
+1. Find a good location for Node Weaver:
+   - ✅ A dedicated Houdini tools folder. Set one up if you don't have one for your own sanity
+   - ❌ NOT in Houdini's program files
+   - ❌ NOT in your Houdini preferences folder
+
+2. Example good locations:
+   - Windows: `C:/Users/YourUsername/Documents/HoudiniTools/NodeWeaver`
+   - Mac: `/Users/YourUsername/Documents/HoudiniTools/NodeWeaver`
+   - Linux: `/home/YourUsername/HoudiniTools/NodeWeaver`
+
+3. Extract the zip file there
+
+### Step 3: Set Up the Package
 1. Find your Houdini preferences folder:
-    - Windows: Open Explorer and go to C:/Users/YourUsername/Documents/houdiniXX.X
-    - Mac: Open Finder and go to ~/Library/Preferences/houdini/XX.X
-    - Linux: Go to /home/YourUsername/houdini/XX.X
-    (Replace XX.X with your Houdini version, like 19.5)
+   - Windows: `C:/Users/YourUsername/Documents/houdiniXX.X`
+   - Mac: `~/Library/Preferences/houdini/XX.X`
+   - Linux: `/home/YourUsername/houdini/XX.X`
+   Replace XX.X with your Houdini version (like 20.5)
+
 2. In your preferences folder:
-    - Look for a folder called "packages"
-    - If it doesn't exist, create it
-3. Copy Files:
-    - Find nodeweaver.json in the files you extracted
-    - Copy it to the packages folder you just found/created
-4. Configure the Package:
-    - Open nodeweaver.json in a text editor
-    - Find the line with $NODEWEAVER
-    - Change the path to where you extracted Node Weaver
-    Example:
+   - Look for a "packages" folder
+   - If it doesn't exist, create it
+
+3. Copy the Package File:
+   - Find `nodeweaver.json` in your Node Weaver folder
+   - Copy it to the packages folder
+
+4. Edit the Package File:
+   - Open `nodeweaver.json` in any text editor
+   - Find the line with `$NODEWEAVER`
+   - Change the path to where you put Node Weaver
+
+Example `nodeweaver.json`:
 ```json
     "env": [
         {
@@ -48,33 +91,92 @@ This guide will help you install Node Weaver in Houdini. There are two ways to d
         }
     ]
 ```
-5. Start Houdini
 
-You should now see Node Weaver tools in Houdini! To check, press tab and look for "Node Weaver Toolkit" in the categories.
+### Step 4:Start Houdini
+- Close Houdini completely (if it was open)
+- Start Houdini
 
-## Alternative Installation Method (For Developers)
+## Method 2: Git Installation
 
-If you're comfortable with command line tools, you can install using Git. This makes updating easier:
+This method makes updating easier but requires Git. New to Git? Check my [Git Guide](git-guide.md).
 
-1. Open Terminal (Mac/Linux) or Git Bash (Windows)
-2. Navigate to where you want to install:
-    cd C:/Users/YourUsername/Documents
+1. Open Terminal/Git Bash
+2. Navigate to where you want Node Weaver:
+   ```bash
+   cd C:/Path/To/Nodeweaver/Installation/NodeWeaver
+   ```
 3. Clone the repository:
-    git clone https://github.com/EJaworenko/Node-Weaver.git
-4. Follow steps 2-6 from the Simple Installation above
+   ```bash
+   git clone https://github.com/EJaworenko/Node-Weaver.git
+   ```
+4. Follow Steps 3-4 from Method 1 above
+
+## Verifying Installation
+
+1. Start Houdini
+2. Press Tab in a network view  (OBJ or SOP context)
+3. Look for "Node Weaver Toolkit" in the categories
+4. Try creating a tool from the tab menu
+
+If you don't see the tools:
+1. Try restarting Houdini
+2. Check your package path
+3. See [Troubleshooting](#troubleshooting)
+
+## Common Installation Paths
+
+### Windows
+```
+Node Weaver Location:
+C:/Users/YourUsername/Documents/HoudiniTools/NodeWeaver
+
+Package File:
+C:/Users/YourUsername/Documents/houdini19.5/packages/nodeweaver.json
+```
+
+### Mac
+```
+Node Weaver Location:
+/Users/YourUsername/Documents/HoudiniTools/NodeWeaver
+
+Package File:
+~/Library/Preferences/houdini/19.5/packages/nodeweaver.json
+```
+
+### Linux
+```
+Node Weaver Location:
+/home/YourUsername/HoudiniTools/NodeWeaver
+
+Package File:
+/home/YourUsername/houdini19.5/packages/nodeweaver.json
+```
 
 ## Troubleshooting
 
-### Common Issues
-1. "I can't find my Houdini preferences folder"
-    - In Houdini, go to File -> Open
-    - Type $HOUDINI_USER_PREF_DIR in the address bar at the top and press enter.
-    - Right click the address and press "Expand Path"
-    - That's your preferences folder!
+### Can't Find Preferences Folder?
+In Houdini:
+1. Go to File → Open
+2. Type $HOUDINI_USER_PREF_DIR in the address bar at the top and press enter.
+3. Right click the address and press "Expand Path"
+4. That's your preferences folder!
 
-2. "The tools aren't showing up in Houdini"
-    - Double-check that your nodeweaver.json path matches where you put the files
-    - Make sure there are no extra spaces in the path
-    - Try using forward slashes (/) even on Windows
+### Tools Not Showing Up?
+1. Check your `nodeweaver.json`:
+   - Path should match your Node Weaver location exactly
+   - Use forward slashes (/) even on Windows
+   - Spaces in the path may cause problems, ideally use _ or - instead.
+2. Make sure the packages folder exists
+3. Restart Houdini
 
-Need more help? [Open an issue](https://github.com/EJaworenko/Node-Weaver/issues) on the GitHub page!
+### Permission Issues?
+- Don't install in Program Files
+- Try running Houdini as administrator
+- Check folder permissions
+
+### Need More Help?
+- See the [Troubleshooting Guide](troubleshooting.md)
+- [Open an issue](https://github.com/EJaworenko/Node-Weaver/issues)
+- Check existing issues for solutions
+
+Remember: If something's not working, don't hesitate to ask for help!
