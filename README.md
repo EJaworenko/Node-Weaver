@@ -6,21 +6,18 @@
 
 Node Weaver is a comprehensive toolset for Houdini Technical Directors that streamlines tool creation and customization workflows. Whether you're building HDAs, managing node networks, or customizing the Houdini interface, Node Weaver provides utilities to make your work more efficient.
 
-## Table of Contents
-- [Node Weaver](#node-weaver)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-    - [Tool Development Suite](#tool-development-suite)
-    - [Customization Tools](#customization-tools)
-  - [Prerequisites](#prerequisites)
-  - [Installation Options](#installation-options)
-    - [Simple Download (Recommended for Beginners)](#simple-download-recommended-for-beginners)
-    - [Git Installation (For Automatic Updates)](#git-installation-for-automatic-updates)
-  - [New to Git?](#new-to-git)
-  - [Documentation](#documentation)
-  - [Contributing](#contributing)
-  - [Getting Help](#getting-help)
-  - [License](#license)
+## Documentation Quick Links
+
+### Core Documentation
+- [Installation Guide](docs/installation.md)
+- [Git Guide for Beginners](docs/git-guide.md)
+- [Troubleshooting](docs/troubleshooting.md)
+- [Contributing Guide](docs/contributing.md)
+
+### Features
+- [Tool Maker Tools](docs/features/tool-maker-tools.md) - HDA development utilities
+- [Node Shape Creator](docs/features/node-shape.md) - Custom node shape design
+- [Color Palette Configurator](docs/features/color-palette.md) - Network color customization
 
 ## Features
 

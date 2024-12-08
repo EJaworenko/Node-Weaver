@@ -1,15 +1,29 @@
+<!-- omit in toc -->
 # Troubleshooting Guide
 
 > [← Back to main documentation](../README.md)
 
 This guide covers common issues you might encounter while using Node Weaver and how to solve them.
 
+<!-- omit in toc -->
 ## Table of Contents
 - [Installation Issues](#installation-issues)
+  - [Tools Not Showing Up in Houdini](#tools-not-showing-up-in-houdini)
+    - [Check Your Package Path](#check-your-package-path)
+    - [Can't Find Houdini Preferences Folder?](#cant-find-houdini-preferences-folder)
+  - [Package Installation Issues](#package-installation-issues)
+    - [Missing Packages Folder](#missing-packages-folder)
+    - [Wrong Houdini Version](#wrong-houdini-version)
 - [Update Issues](#update-issues)
+  - [Manual Download Updates](#manual-download-updates)
+  - [Git Update Issues](#git-update-issues)
+    - [Changes Won't Download](#changes-wont-download)
+    - [Local Changes Blocking Update](#local-changes-blocking-update)
 - [Common Tool Issues](#common-tool-issues)
-- [Performance Issues](#performance-issues)
 - [Getting Help](#getting-help)
+  - [Before Asking for Help](#before-asking-for-help)
+  - [How to Report an Issue](#how-to-report-an-issue)
+  - [Getting Quick Help](#getting-quick-help)
 
 ## Installation Issues
 
