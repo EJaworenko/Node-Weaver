@@ -1,7 +1,7 @@
 # Node Weaver
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/EJaworenko/Node-Weaver)](https://github.com/EJaworenko/Node-Weaver/releases)
+[![GitHub release (latest by date including pre-release)](https://img.shields.io/github/v/release/EJaworenko/Node-Weaver?include_prereleases)](https://github.com/EJaworenko/Node-Weaver/releases)
 [![Houdini 19.5](https://img.shields.io/badge/Houdini-19.5%2B-orange)](https://www.sidefx.com/download/)
 
 Node Weaver is a comprehensive toolset for Houdini Technical Directors that streamlines tool creation and customization workflows. Whether you're building HDAs, managing node networks, or customizing the Houdini interface, Node Weaver provides utilities to make your work more efficient.
