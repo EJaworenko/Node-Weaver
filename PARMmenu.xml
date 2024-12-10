@@ -1,0 +1,31 @@
+<menuDocument>
+	<!-- menuDocument can only contain 1 menu element, whose id is
+         implicitly "root_menu"
+      -->
+	<menu>
+		<separatorItem/>
+		<subMenu id="nodeweaver_menu">
+			<label>Node Weaver</label>
+			<scriptItem id="nw_stringweaver">
+				<label>Modify Parm Values</label>
+				<context>
+					<expression>
+if len(kwargs["parms"]) == 0:
+	return False
+from nodeweaver import ui_utils
+return ui_utils.isParmOfType(kwargs["parms"][0])
+					</expression>
+				</context>
+				<scriptCode>
+				<![CDATA[
+from importlib import reload
+from nodeweaver import stringweaver
+reload(stringweaver)
+
+window = stringweaver.StringWeaver(parm_start=True, start_value=kwargs["parms"][0].eval())
+window.showWindow()]]>
+				</scriptCode>
+			</scriptItem>
+		</subMenu>
+	</menu>
+</menuDocument>

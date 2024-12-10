@@ -1,11 +1,22 @@
 # Project structure files
 generate_project_structure_txt.py
 project_structure.txt
+generate__init__collections.py
+combined_init_files.py
+
+# Source folders
+_*
+otls/backup/
+*.af*
 
 # Python cache
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
+build/
+dist/
+*.egg-info/
 
 # Virtual environments
 venv/
@@ -17,7 +28,6 @@ ENV/
 .idea/
 *.swp
 *.swo
-.DS_Store
 
 # Operating System Files
 .DS_Store
@@ -27,3 +37,11 @@ ENV/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Documentation build
+site/
+docs/_build/
+
+# Temp files
+*.tmp
+*.bak

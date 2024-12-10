@@ -1,0 +1,24 @@
+{
+    "menu": {
+        "group_selection": {
+            "single_group_type": {
+                "description": "Generate a menu of groups of a single type.",
+                "code": "if kwargs['node']:\n    return kwargs['node'].geometry().generateGroupMenu(%option1%)\nelse:\n    return ['', 'Invalid node']",
+                "option1": {
+                    "label": "Choose a Geometry Type",
+                    "options":["<>", "All Groups", "hou.geometryType.Primitives", "Primitives", "hou.geometryType.Points", "Points", "hou.geometryType.Edges", "Edges", "hou.geometryType.Vertices", "Vertices"],
+                    "expression": ["ifelse", "", "", "group_types=%option1%"]
+                }
+            },
+            "multiple_group_types": {
+
+            },
+            "group_type_from_parm": {
+
+            }
+        }
+    },
+    "action_button": {
+
+    }
+}

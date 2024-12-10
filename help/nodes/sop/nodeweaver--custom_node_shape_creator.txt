@@ -1,0 +1,84 @@
+= Custom Node Shape Creator =
+
+#type: node
+#context: sop
+#icon: /nodes/icons_png/nodeweaver_node_shape_creator_128.png
+
+"""A tool for generating node shapes to use in Houdini."""
+
+== Overview ==
+
+While we use nodes all the time, the process of creating custom shapes for them is not well documented nor straightforward. [Credit to Simon Fiedler and Bastian Schiffer for doing the initial exploration year ago.|https://vimeo.com/221182957] 
+
+The aim of this tool is to make the process of creating custom node shapes as easy as possible. Examples are provided for educational purposes and to show the capabilities of the tool. Alongside being able to adjust any element of the node shape, you can also visualize the tool in a large variety of ways to make sure it looks exactly how you want it to when you export. With any luck, we should be seeing more custom node shapes in the future!
+
+=== Where to Save Node Shapes ===
+
+Online, the only place I've seen node shapes saved is _C:\Program Files\Side Effects Software\Houdini XX.X.XXX\houdini\config\NodeShapes._ If you look here, you will find the default node shapes that come with Houdini. You can save your own node shapes here, but I would recommend saving them to one of the following locations to make them much easier to access.
+- $HOUDINI_USER_PREF_DIR/config/NodeShapes  |  _This is the location in your "My Documents/Houdini XX.X" folder. If you're not creating a custom package for distribution, this is the best place to save your node shapes. When you update Houdini, be sure to copy your config/NodeShapes folder over to the new version._
+- $NAMEOFPACKAGEPATH/config/NodeShapes  |  _The allows you to save the node shapes in the package you're creating. This is the best place to save your node shapes if you're creating a custom package for distribution. In fact, that is how I set up the node shapes that came with Nodeweaver. (Found in $NODEWEAVER/config/NodeShapes)_
+
+=== Blending with the Default Node Shapes ===
+
+This tool does a lot of things automatically that should make it easy to drop your own node shapes in with the default Houdini node shapes. However, it does help to some of the stats of the default node shapes. 
+
+- Average Houdini node size: *1 x 0.3*
+- Average icons size: *0.24 x 0.24*
+- Input range is between *-0.2 to -0.09* on Y axis.
+- Output range is between *0.38 to 0.51* on Y axis and the median input and output is *-0.09 x 0.38*
+- Circle is *0.57x0.57* in size with a *0.21x0.21* icon.
+
+Knowing these can help you make sure your node shapes are consistent with the default Houdini node shapes. For example, a vertical shape will likely be out of place since they're all horizontal (most are 1 unit wide and 0.3 units tall).
+
+NOTE:
+    *Centered input & output curves:* Nothing is stopping you from creating non-centered input or output curves. However, it is good practice to keep them centered so that when wires connect to the inputs or outputs, they stay centered on the node shape. The node will appear to be aligned with the one above or below it when pressing ((A)) to align nodes as well.
+
+    *Working space:* Node shapes should exist inside the 0-1 space in X and Y, or at least center on the 0.5x0.15 point (center of standard nodes). Input and Output curves are the exception (you can see it in the default node stats). The tool will transform everything accordingly for you, but some settings will allow you to go outside this space if you find a need to.
+
+=== Wire Curvature ===
+
+It is possible to adjust the angle that inputs and outputs come off this node from. You can find settings for this under __Input Settings > Wire Curvature__ and __Output Settings > Wire Curvature__. It is more of an aesthetic thing, but you can see the difference in the examples below which show a varied number of inputs and outputs. _It is a "compare image" so it may take a bit to load the slider handles. The initially visible image is with no wire curvature adjustment._
+
+:compare_images:
+    #image1: /images/wireCurve1.png
+    #image2: /images/wireCurve2.png
+
+@inputs
+
+NodeShape Geo:
+    This requires at least 5 (ideally only 5) polygon primitives you're using to define the Shape Definitions with.
+
+@parameters
+
+Examples:
+    #id: examples
+    This is a list of examples that you can use to learn how to use different features of the tool. Each example drops a subnet into the network so you can see how it works alongside a sticky note describing unique features of that example.
+
+NodeShape Name:
+    #id: shape_name
+    This string defines the name of the node shape file and the name of the shape itself.
+
+Visualize - Style:
+    #id: color_style
+    Presents 4 different color palettes of nodes from different contexts within Houdini. Has no effect on the output, but can help you visualize how your node shape will look in different contexts.
+
+Visualize - Enable Flags:
+    #id: btn_flags
+    Allows the artist to toggle different flags to see how the node looks with them on or off. Has no effect on the output.
+
+Visualize - Node Color:
+    #id: color_main
+    Allows the artist to change the color of the visualized node. Has no effect on the output.
+
+Visualize - Preview Icon File:
+    #id: icon_prev
+    By default, a grey square is shown in place of an icon. If you have a png version of the icon you want to use, you can load it here to see how it will look. Has no effect on the output.
+
+Visualize - Wire Visualize:
+    #id: wire_vis
+    Allows the artist to toggle the wire visualization on or off. This is useful primarily for checking wire curvature before export. Has no effect on the output.
+
+@related
+
+* [Node:sop/nodeweaver--inspect_node_shape_file]
+* [Node:sop/nodeweaver--color_palette_configurator]

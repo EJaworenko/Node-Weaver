@@ -1,0 +1,87 @@
+site_name: NodeWeaver
+site_description: A Houdini tool development framework
+repo_url: https://github.com/EJaworenko/nodeweaver
+repo_name: EJaworenko/nodeweaver
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - gen-files:
+      scripts:
+        - docs/gen_ref_nav.py
+  - literate-nav:
+      nav_file: SUMMARY.md
+  - section-index
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          selection:
+            docstring_style: google
+          rendering:
+            show_source: true
+            show_root_heading: true
+            heading_level: 2
+            members_order: source
+            show_if_no_docstring: false
+            merge_init_into_class: true
+            show_root_full_path: false
+            separate_signature: true
+
+nav:
+  - Home: index.md
+  - Features:
+    - Overview: features/README.md
+    - Color Palette: features/color-palette.md
+    - Node Shape: features/node-shape.md
+    - Tool Maker Tools: features/tool-maker-tools.md
+  - API Reference: reference/
+  - Development:
+    - Installation: installation.md
+    - Contributing: contributing.md
+    - Git Guide: git-guide.md
+    - Troubleshooting: troubleshooting.md
+
+watch:
+  - .
+

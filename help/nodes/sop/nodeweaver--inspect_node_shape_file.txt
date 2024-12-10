@@ -1,0 +1,45 @@
+= Inspect Node Shape File =
+
+#type: node
+#context: sop
+#icon: /nodes/icons_png/nodeweaver_node_shape_inspector_128.png
+
+"""A tool for importing and inspecting node shape files."""
+
+== Overview ==
+
+If you want to analyze a node shape file, this will open it and allow you to see the prims that make it up. You can see the stats of it, modify elements, and even feed it back into the Node Shape Creator to output a new node with the changes you made.
+
+:dev:
+    The stats listed in this tool and the Node Shape Creator actually come from analyzing every node found in _C:\Program Files\Side Effects Software\Houdini XX.X.XXX\houdini\config\NodeShapes._
+
+WARNING:
+    If you import any of the default node shapes from the Houdini install directory, do not save them back to that directory. Doing so will overwrite the original file and you will have to reinstall Houdini to get it back. If you want to modify the original shapes, save them in the $HOUDINI_USER_PREF_DIR/config/NodeShapes directory and they should override the default shapes.
+
+@outputs
+
+Constructed Node Shape:
+    This includes all of the prims that make up the node shape.
+
+@parameters
+
+Node Shape File:
+    #id: file
+    This is the path to the node shape file you want to import.
+
+Visualize - Enable Flags:
+    #id: btn_flags
+    Allows the artist to toggle different flags to see how the node looks with them on or off. Has no effect on the output.
+
+Visualize - Node Color:
+    #id: color_main
+    Allows the artist to change the color of the visualized node. Has no effect on the output.
+
+Visualize - Preview Icon File:
+    #id: icon_prev
+    By default, a grey square is shown in place of an icon. If you have a png version of the icon you want to use, you can load it here to see how it will look. Has no effect on the output.
+
+@related
+
+* [Node:sop/nodeweaver--custom_node_shape_creator]
+* [Node:sop/nodeweaver--color_palette_configurator]

@@ -1,0 +1,13 @@
+{
+    "hpath": [
+        "$NODEWEAVER"
+    ],
+    "load_package_once": true,
+    "enable": "houdini_version >= '19.5'",
+    "version": "19.5.455",
+    "env": [
+        {
+            "NODEWEAVER": "C:/Users/YourUsername/Documents/HoudiniTools/NodeWeaver"
+        }
+    ]
+}

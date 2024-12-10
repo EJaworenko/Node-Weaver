@@ -1,0 +1,47 @@
+= Tool Maker Tools =
+
+#type: node
+#context: sop
+#icon: /nodes/icons_png/nodeweaver_node_weaver_128.png
+
+"""A tool for making tools, automating tedious processes and improving TD quality of life."""
+
+== Overview ==
+
+A list of the functions this tool can do so far:
+- Generating menu and action button script (in progress).
+- Create the necessary nodes to convert a copy to points setup into an instanced setup.
+It is a work in progress and will be updated as I add more features.
+
+@outputs
+
+Nothing:
+    Currently there is no possible output.
+
+@parameters
+
+== Script Generators ==
+
+== Setting up Instancing from SOP ==
+
+    === Asset ===
+
+    Asset # Name:
+        #id: inst_asset_name
+        This string is used to name the nodes created by this tool. 
+
+    Geometry to Instance:
+        #id: inst_sop_target
+        The SOP Geometry node that will be instanced. There needs to be an int or string attribute on it to differentiate between variants, even if there is only 1 variant.
+        
+    Points to Instance:
+        #id: inst_sop_points
+        The SOP Points node where instances will be copied to. It DOES NOT need a variant attribute, it will have the Geometry to Instance distributed to it in a random and uniform fashion.
+        
+    Variant Attribute:
+        #id: inst_var_attrib
+        The name of the variant attribute on the Geo to Instance. Only supports string and integer attributes.
+
+@related
+
+* [Node:obj/color_palette_configurator]

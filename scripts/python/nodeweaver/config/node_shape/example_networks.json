@@ -1,0 +1,737 @@
+{
+    "template_json_format": {
+        "sticky": "Text that goes into a sticky note in the network to explain it.",
+        "tree": [
+            {
+                "name": "",
+                "type_name": "",
+                "subnet": "",
+                "pos": [],
+                "parms": {},
+                "parmtuples": {},
+                "expressions": {},
+                "inputs": [""],
+                "flags": ["render", "display"]
+            }
+        ]
+    },
+    "simple_clip_method": {
+        "sticky": "This example showcases a basic node created entirely through SOPs. The clip node is used to create the shape, and the merge node is used to combine the shape with the input and output curves. Nothing special about it, but it gives an idea at what is needed for the tool to work.",
+        "tree": [
+            {
+                "name": "node_shape_base",
+                "type_name": "grid",
+                "pos": [0, 5],
+                "parms": {
+                    "orient": 0,
+                    "rows": 2,
+                    "cols": 2
+                },
+                "parmtuples": {
+                    "size": [1, 0.3],
+                    "t": [0.5, 0.15, 0],
+                    "r": [180, 0, 0]
+                }
+            },
+            {
+                "name": "node_shape_bevel",
+                "type_name": "polybevel",
+                "pos": [0, 4],
+                "parms": {
+                    "grouptype": 1,
+                    "offset": 0.05,
+                    "divisions": 2
+                },
+                "inputs": ["node_shape_base"]
+            },
+            {
+                "name": "clip_flag_bypass",
+                "type_name": "clip",
+                "pos": [-1, 3],
+                "parms": {
+                    "clipop": 2
+                },
+                "parmtuples": {
+                    "origin": [0.11, 0, 0],
+                    "dir": [1, -0.125, 0]
+                },
+                "inputs": ["node_shape_bevel"]
+            },
+            {
+                "name": "clip_flag_freeze",
+                "type_name": "clip",
+                "pos": [-1, 2],
+                "parms": {
+                    "clipop": 1
+                },
+                "parmtuples": {
+                    "origin": [0.25, 0, 0],
+                    "dir": [1, -0.125, 0]
+                },
+                "inputs": ["clip_flag_bypass"]
+            },
+            {
+                "name": "clip_flag_display",
+                "type_name": "clip",
+                "pos": [1, 3],
+                "parms": {
+                    "clipop": 2
+                },
+                "parmtuples": {
+                    "origin": [0.89, 0.3, 0],
+                    "dir": [1, -0.125, 0]
+                },
+                "inputs": ["node_shape_bevel"]
+            },
+            {
+                "name": "clip_flag_template",
+                "type_name": "clip",
+                "pos": [1, 2],
+                "parms": {
+                    "clipop": 0
+                },
+                "parmtuples": {
+                    "origin": [0.75, 0.3, 0],
+                    "dir": [1, -0.125, 0]
+                },
+                "inputs": ["clip_flag_display"]
+            },
+            {
+                "name": "node_shape_merge",
+                "type_name": "merge",
+                "pos": [0, 1],
+                "inputs": ["clip_flag_freeze", "node_shape_bevel", "clip_flag_template"]
+            },
+            {
+                "parms": {
+                    "shape_name": "standard",
+                    "group_shape": "2",
+                    "group_flag_vis": "3",
+                    "group_flag_template": "4",
+                    "group_flag_freeze": "1",
+                    "group_flag_bypass": "0"
+                },
+                "inputs": ["node_shape_merge"]
+            }
+        ]
+    },
+    "complex_constructed_method": {
+        "sticky": "NOTE: Because not every operation here is procedural, there is a chance it may not appear correct when you create this example.\nThis example showcases how to create the nodeweaver custom shapes through raw SOPs. Triangulate2D + divide were used heavily for combining then simplifying shapes down to what the tool can use. A variation of the base shape was used for creating the Input and Output curves, but it wasn't entirely custom.",
+        "tree": [
+            {
+                "name": "middle_dot",
+                "type_name": "circle",
+                "pos": [-7, 8],
+                "parms": {
+                    "type": 1,
+                    "scale": 0.14,
+                    "divs": 20
+                },
+                "parmtuples": {
+                    "r": [180, 0, 0]
+                }
+            },
+            {
+                "name": "flag_up_l_base",
+                "type_name": "add",
+                "pos": [-5, 11],
+                "parms": {
+                    "points": 2,
+                    "switcher1": 1
+                },
+                "parmtuples": {
+                    "pt0": [-0.2875, 0.2875, 0]
+                },
+                "expressions": {
+                    "pt1x": "ch(\"pt0x\")/2+(ch(\"../diamond_sweep/width\")*sin(45)/2)+0.01",
+                    "pt1y": "-ch(\"pt1x\")"
+                }
+            },
+            {
+                "name": "flag_up_base_mirror",
+                "type_name": "mirror",
+                "pos": [-5, 10],
+                "inputs": ["flag_up_l_base"]
+            },
+            {
+                "name": "lines_down_base",
+                "type_name": "add",
+                "pos": [-3, 11],
+                "parms": {
+                    "points": 3,
+                    "switcher1": 1
+                },
+                "parmtuples": {
+                    "pt0": [0.2875, -0.2875, 0],
+                    "pt2": [-0.2875, -0.2875, 0]
+                }
+            },
+            {
+                "name": "line_up_mid_base",
+                "type_name": "add",
+                "pos": [-3, 10],
+                "parms": {
+                    "points": 2,
+                    "switcher1": 1
+                },
+                "parmtuples": {
+                    "pt1": [0, 0.2875, 0]
+                }
+            },
+            {
+                "name": "merge_base_lines",
+                "type_name": "merge",
+                "pos": [-4, 9],
+                "inputs": ["flag_up_base_mirror", "lines_down_base", "line_up_mid_base"]
+            },
+            {
+                "name": "sweep_base_lines",
+                "type_name": "sweep",
+                "pos": [-4, 8],
+                "parms": {
+                    "surfaceshape": 3,
+                    "cols": 1,
+                    "width": 0.065,
+                    "upvectortype": 3
+                },
+                "inputs": ["merge_base_lines"]
+            },
+            {
+                "name": "dot_placement_base",
+                "type_name": "grid",
+                "pos": [0, 11],
+                "parms": {
+                    "orient": 0,
+                    "rows": 2,
+                    "cols": 2
+                },
+                "parmtuples": {
+                    "size": [0.575, 0.575],
+                    "r": [180, 0, 0]
+                }
+            },
+            {
+                "name": "add_dots_to_grid",
+                "type_name": "resample",
+                "pos": [0, 10],
+                "parms": {
+                    "edge": 1,
+                    "dolength": 0,
+                    "dosegs": 1,
+                    "segs": 2
+                },
+                "inputs": ["dot_placement_base"]
+            },
+            {
+                "name": "dot_to_copy",
+                "type_name": "circle",
+                "pos": [-1, 9],
+                "parms": {
+                    "type": 1,
+                    "scale": 0.1,
+                    "divs": 20
+                },
+                "parmtuples": {
+                    "r": [180, 0, 0]
+                }
+            },
+            {
+                "name": "copy_dots",
+                "type_name": "copytopoints",
+                "pos": [-1, 8],
+                "inputs": ["dot_to_copy", "add_dots_to_grid"]
+            },
+            {
+                "name": "blast_corners",
+                "type_name": "blast",
+                "pos": [1, 9],
+                "parms": {
+                    "grouptype": 3,
+                    "group": "0 2 4 6"
+                },
+                "inputs": ["add_dots_to_grid"]
+            },
+            {
+                "name": "diamond_sweep",
+                "type_name": "sweep",
+                "pos": [1, 8],
+                "parms": {
+                    "surfaceshape": 3,
+                    "cols": 1,
+                    "width": 0.1,
+                    "upvectortype": 3
+                },
+                "inputs": ["blast_corners"]
+            },
+            {
+                "name": "merge_base_shapes",
+                "type_name": "merge",
+                "pos": [0, 7],
+                "inputs": ["middle_dot", "sweep_base_lines", "copy_dots", "diamond_sweep"]
+            },
+            {
+                "name": "flag_down_l_base",
+                "type_name": "add",
+                "pos": [5, 9],
+                "parms": {
+                    "points": 2,
+                    "switcher1": 1
+                },
+                "parmtuples": {
+                    "pt0": [-0.2875, -0.2875, 0]
+                },
+                "expressions": {
+                    "pt1x": "ch(\"pt0x\")/2+(ch(\"../diamond_sweep/width\")*sin(45)/2)+0.01",
+                    "pt1y": "ch(\"pt1x\")"
+                }
+            },
+            {
+                "name": "dot_to_down_l_flag",
+                "type_name": "copytopoints",
+                "pos": [4, 8],
+                "parms": {
+                    "targetgroup": "0"
+                },
+                "inputs": ["dot_to_copy", "flag_down_l_base"]
+            },
+            {
+                "name": "sweep_down_l_line",
+                "type_name": "sweep",
+                "pos": [6, 8],
+                "parms": {
+                    "surfaceshape": 3,
+                    "cols": 1,
+                    "width": 0.065,
+                    "upvectortype": 3
+                },
+                "inputs": ["flag_down_l_base"]
+            },
+            {
+                "name": "merge_down_l_flag",
+                "type_name": "merge",
+                "pos": [5, 7],
+                "inputs": ["dot_to_down_l_flag", "sweep_down_l_line"]
+            },
+            {
+                "name": "combine_down_l_flag",
+                "type_name": "triangulate2d",
+                "pos": [5, 5],
+                "parms": {
+                    "usesilhouettepolys": 1,
+                    "silhouettepolys": "*",
+                    "removefromconvexhull": 1
+                },
+                "inputs": ["merge_down_l_flag"]
+            },
+            {
+                "name": "OUT_io_base",
+                "type_name": "triangulate2d",
+                "pos": [2, 6],
+                "parms": {
+                    "usesilhouettepolys": 1,
+                    "silhouettepolys": "*"
+                },
+                "inputs": ["merge_base_shapes"]
+            },
+            {
+                "name": "isolate_flag_up",
+                "type_name": "blast",
+                "pos": [-2, 6],
+                "parms": {
+                    "group": "1 6",
+                    "grouptype": 4,
+                    "negate": 1
+                },
+                "inputs": ["merge_base_shapes"]
+            },
+            {
+                "name": "combine_flag_up",
+                "type_name": "triangulate2d",
+                "pos": [-2, 5],
+                "parms": {
+                    "usesilhouettepolys": 1,
+                    "silhouettepolys": "*",
+                    "removefromconvexhull": 1
+                },
+                "inputs": ["isolate_flag_up"]
+            },
+            {
+                "name": "merge_l_flags",
+                "type_name": "merge",
+                "pos": [-2, 4],
+                "inputs": ["combine_flag_up", "combine_down_l_flag"]
+            },
+            {
+                "name": "mirror_flags",
+                "type_name": "mirror",
+                "pos": [-2, 3],
+                "inputs": ["merge_l_flags"]
+            },
+            {
+                "name": "combine_base_shapes",
+                "type_name": "triangulate2d",
+                "pos": [0, 5],
+                "parms": {
+                    "usesilhouettepolys": 1,
+                    "silhouettepolys": "*",
+                    "removeoutsidesilhouette": 1
+                },
+                "inputs": ["merge_base_shapes"]
+            },
+            {
+                "name": "open_base_shape",
+                "type_name": "edgecusp",
+                "pos": [0, 4],
+                "parms": {
+                    "group": "p210-245 p231-209 p220-237",
+                    "cutboundaries": 1
+                },
+                "inputs": ["combine_base_shapes"]
+            },
+            {
+                "name": "merge_all_shapes",
+                "type_name": "merge",
+                "pos": [0, 2],
+                "inputs": ["mirror_flags", "open_base_shape"]
+            },
+            {
+                "name": "remove_inline_edges",
+                "type_name": "divide",
+                "pos": [0, 1],
+                "parms": {
+                    "convex": 0,
+                    "removesh": 1
+                },
+                "inputs": ["merge_all_shapes"]
+            },
+            {
+                "parms": {
+                    "shape_name": "nodeweaver",
+                    "group_shape": "4",
+                    "group_flag_vis": "2",
+                    "group_flag_template": "3",
+                    "group_flag_freeze": "1",
+                    "group_flag_bypass": "0",
+                    "overall_scale": 0.8,
+                    "icon_scale": 0.22,
+                    "in_method": 1,
+                    "in_custom": "../subnet/OUT_io_base",
+                    "in_offset": 0.1,
+                    "in_start": 0.2,
+                    "in_end": 0.8,
+                    "in_segs": 24,
+                    "out_method": 1,
+                    "out_custom": "../subnet/OUT_io_base",
+                    "out_offset": 0.1,
+                    "out_start": 0.2,
+                    "out_end": 0.8,
+                    "out_segs": 24
+                },
+                "inputs": ["remove_inline_edges"]
+            }
+        ]
+    },
+    "honeycomb_trace_method": {
+        "sticky": "NOTE: Because not every operation here is procedural, there is a chance it may not appear correct when you create this example.\nThis example showcases how to create custom shapes through COPs and bring them over to SOPs via the Trace node. Each flag is cut down from this shape and they're all merged together at the end. It also uses a custom polyline for the input and output curves. The Wire Curvature on the HDA was also adjusted to straighten the wires as they come out of the shape.",
+        "tree": [
+            {
+                "name": "COP_shape_gen",
+                "type_name": "cop2net",
+                "pos": [2, 10]
+            },
+            {
+                "name": "hex1",
+                "type_name": "shape",
+                "subnet": "COP_shape_gen",
+                "pos": [-1, 6],
+                "parms": {
+                    "numsides": 6,
+                    "rotate": 30,
+                    "overridesize": 1
+                },
+                "parmtuples": {
+                    "translate": [-0.016, 0.175],
+                    "scale": [0.5, 0.5],
+                    "size": [1000, 1000]
+                },
+                "flags": ["nodisplay"]
+            },
+            {
+                "name": "hex2",
+                "type_name": "shape",
+                "subnet": "COP_shape_gen",
+                "pos": [1, 6],
+                "parms": {
+                    "numsides": 6,
+                    "rotate": 30,
+                    "overridesize": 1
+                },
+                "parmtuples": {
+                    "translate": [0.2, -0.2],
+                    "scale": [0.5, 0.5],
+                    "size": [1000, 1000]
+                },
+                "flags": ["nodisplay"]
+            },
+            {
+                "name": "add_hexes",
+                "type_name": "add",
+                "subnet": "COP_shape_gen",
+                "pos": [0, 4],
+                "inputs": ["hex1", "hex2"],
+                "flags": ["nodisplay"]
+            },
+            {
+                "name": "limit",
+                "type_name": "limit",
+                "subnet": "COP_shape_gen",
+                "pos": [0, 2],
+                "inputs": ["add_hexes"],
+                "flags": ["nodisplay"]
+            },
+            {
+                "name": "OUT",
+                "type_name": "null",
+                "subnet": "COP_shape_gen",
+                "pos": [0, 0],
+                "inputs": ["limit"],
+                "flags": ["render", "display"]
+            },
+            {
+                "name": "trace_COPs",
+                "type_name": "trace",
+                "pos": [0, 10],
+                "parms": {
+                    "file": "op:/`opfullpath(\"../COP_shape_gen/OUT/\")`"
+                }
+            },
+            {
+                "name": "clean_shape",
+                "type_name": "facet",
+                "pos": [0, 9],
+                "parms": {
+                    "inline": 1,
+                    "angle_threshold": 0.03
+                },
+                "inputs": ["trace_COPs"]
+            },
+            {
+                "name": "reverse_trace",
+                "type_name": "reverse",
+                "pos": [0, 8],
+                "inputs": ["clean_shape"]
+            },
+            {
+                "name": "cut_line_base",
+                "type_name": "add",
+                "pos": [2, 9],
+                "parms": {
+                    "switcher1": 1,
+                    "points": 2
+                },
+                "parmtuples": {
+                    "pt0": [-0.0419736, -0.0889343, 0],
+                    "pt1": [0.225974, 0.0639343, 0]
+                }
+            },
+            {
+                "name": "cut_line",
+                "type_name": "sweep",
+                "pos": [2, 8],
+                "parms": {
+                    "surfaceshape": 1,
+                    "radius": 0.0001,
+                    "endcaptype": 2
+                },
+                "inputs": ["cut_line_base"]
+            },
+            {
+                "name": "cut_shapes",
+                "type_name": "boolean",
+                "pos": [1, 7],
+                "parms": {
+                    "asurface": 1,
+                    "booleanop": 2
+                },
+                "inputs": ["reverse_trace", "cut_line"]
+            },
+            {
+                "name": "blast_out_flags",
+                "type_name": "blast",
+                "pos": [1, 6],
+                "parms": {
+                    "group": "3-4 7-8",
+                    "grouptype": 3
+                },
+                "inputs": ["cut_shapes"]
+            },
+            {
+                "name": "blast_in_flags",
+                "type_name": "blast",
+                "pos": [3, 6],
+                "parms": {
+                    "group": "0-1 5 11-12",
+                    "grouptype": 3
+                },
+                "inputs": ["cut_shapes"]
+            },
+            {
+                "name": "inner_hex_cut_base",
+                "type_name": "polyexpand2d",
+                "pos": [5, 6],
+                "parms": {
+                    "offset": 0.075,
+                    "outputoutside": 0
+                },
+                "inputs": ["cut_shapes"]
+            },
+            {
+                "name": "inner_hex_peak",
+                "type_name": "peak",
+                "pos": [5, 5],
+                "parms": {
+                    "dist": -0.1
+                },
+                "inputs": ["inner_hex_cut_base"]
+            },
+            {
+                "name": "inner_hex_extrude",
+                "type_name": "polyextrude",
+                "pos": [5, 4],
+                "parms": {
+                    "dist": 0.2,
+                    "outputback": 1
+                },
+                "inputs": ["inner_hex_peak"]
+            },
+            {
+                "name": "cut_icon",
+                "type_name": "box",
+                "pos": [7, 6],
+                "parms": {
+                    "type": 1
+                },
+                "parmtuples": {
+                    "size": [0.2675, 0.2675, 1],
+                    "t": [0.092, -0.0133, 0],
+                    "divrate": [2, 2, 2]
+                }
+            },
+            {
+                "name": "cut_flags_l",
+                "type_name": "box",
+                "pos": [7, 5],
+                "parms": {
+                    "type": 1
+                },
+                "parmtuples": {
+                    "size": [0.025, 0.2675, 1],
+                    "t": [-0.0155, 0.424859, 0],
+                    "divrate": [2, 2, 2]
+                }
+            },
+            {
+                "name": "cut_flags_r",
+                "type_name": "box",
+                "pos": [7, 4],
+                "parms": {
+                    "type": 1
+                },
+                "parmtuples": {
+                    "size": [0.025, 0.2675, 1],
+                    "t": [0.199, -0.478389, 0],
+                    "divrate": [2, 2, 2]
+                }
+            },
+            {
+                "name": "merge_cutouts",
+                "type_name": "merge",
+                "pos": [5, 3],
+                "inputs": ["inner_hex_extrude", "cut_icon", "cut_flags_l", "cut_flags_r"]
+            },
+            {
+                "name": "expand_base_shape",
+                "type_name": "polyexpand2d",
+                "pos": [0, 3],
+                "parms": {
+                    "offset": 0.025,
+                    "outputinside": 0
+                },
+                "inputs": ["reverse_trace"]
+            },
+            {
+                "name": "boolean_out_flags",
+                "type_name": "boolean",
+                "pos": [1, 2],
+                "parms": {
+                    "asurface": 1,
+                    "booleanop": 2
+                },
+                "inputs": ["blast_out_flags", "merge_cutouts"]
+            },
+            {
+                "name": "boolean_in_flags",
+                "type_name": "boolean",
+                "pos": [3, 2],
+                "parms": {
+                    "asurface": 1,
+                    "booleanop": 2
+                },
+                "inputs": ["blast_in_flags", "merge_cutouts"]
+            },
+            {
+                "name": "merge_all_shapes",
+                "type_name": "merge",
+                "pos": [0, 1],
+                "inputs": ["expand_base_shape", "boolean_out_flags", "boolean_in_flags"]
+            },
+            {
+                "name": "custom_input",
+                "type_name": "add",
+                "pos": [5, 2],
+                "parms": {
+                    "points": 3,
+                    "switcher1": 1
+                },
+                "parmtuples": {
+                    "pt0": [0.277, 0.687, 0],
+                    "pt1": [0.385, 0.75, 0],
+                    "pt2": [0.723, 0.554, 0]
+                }
+            },
+            {
+                "name": "custom_output",
+                "type_name": "add",
+                "pos": [7, 2],
+                "parms": {
+                    "points": 3,
+                    "switcher1": 1
+                },
+                "parmtuples": {
+                    "pt0": [0.277, -0.254, 0],
+                    "pt1": [0.615, -0.45, 0],
+                    "pt2": [0.723, -0.387, 0]
+                }
+            },
+            {
+                "parms": {
+                    "shape_name": "twohoneycomb",
+                    "group_shape": "0",
+                    "group_flag_vis": "2",
+                    "group_flag_template": "4",
+                    "group_flag_freeze": "3",
+                    "group_flag_bypass": "1",
+                    "in_method": 2,
+                    "in_custom": "../custom_input",
+                    "in_match": 0,
+                    "in_wire_blend": 1,
+                    "out_method": 2,
+                    "out_custom": "../custom_output",
+                    "out_wire_blend": 1,
+                    "out_match": 0
+                },
+                "inputs": ["merge_all_shapes"]
+            }
+        ]
+    }
+}

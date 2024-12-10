@@ -1,0 +1,47 @@
+= Color Palette Configurator =
+
+#type: node
+#context: sop
+#icon: /nodes/icons_png/nodeweaver_node_color_customizer_128.png
+
+"""Convenience utility for modifying the network view color palette."""
+
+== Overview ==
+
+The default color palette is tedious to modify. This tool allows you to rearrange colors, change them with ease, add new ones via gradient or hex-code as well. 
+
+@parameters
+
+== Main Color List ==
+
+== Gradient-Based ==
+
+    === Gradient Controls ===
+
+    Sample Screen Colors:
+        #id: btn_grad_screen
+
+        You can also right click the word "Gradient to Sample" and select "Sample Screen Colors" from the bottom of that menu for any ramp parameter.
+
+    === Cosine-Based Gradient Parameters ===
+
+    Brightness:
+        #id: grad_a
+        Affects brightness of R, G, and B channels.
+    Contrast:
+        #id: grad_b
+        Affects contrast of R, G, and B channels.
+    Frequency:
+        #id: grad_c
+        Affects how quickly the R, G, and B channels transition through a cosine cycle.
+
+== Text-Based ==
+
+    Add Text Here:
+        #id: text
+        1 swatch per line or it will fail. Using color.adobe.com or other sites, you can sometimes extract palettes in a text format. This can turn those into swatches to use IF they are formatted correctly. 
+
+@related
+
+* [Node:sop/nodeweaver--custom_node_shape_creator]
+* [Node:sop/nodeweaver--inspect_node_shape_file]

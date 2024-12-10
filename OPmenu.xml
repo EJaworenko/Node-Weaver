@@ -1,0 +1,91 @@
+<menuDocument>
+	<!-- menuDocument can only contain 1 menu element, whose id is
+         implicitly "root_menu"
+      -->
+	<menu>
+		<separatorItem/>
+		<subMenu id="nodeweaver_menu">
+			<label>Node Weaver</label>
+			<scriptItem id="opmenu.nw_stringweaver">
+				<label>Modify Node Names</label>
+				<context>
+					<expression>kwargs["node"].type().category().name() in ("Object", "Sop", "Chop", "Top", "Vop") and kwargs["node"].isFlagWritable(hou.nodeFlag.Display)</expression>
+				</context>
+				<scriptCode>
+				<![CDATA[
+from importlib import reload
+from nodeweaver import stringweaver
+reload(stringweaver)
+
+window = stringweaver.StringWeaver(parm_start=False, start_value=kwargs["node"].name())
+window.showWindow()]]>
+				</scriptCode>
+			</scriptItem>
+			<scriptItem id="opmenu.nw_updatehdasections">
+				<label>Update HDA Python Sections from Source Files</label>
+				<context>
+					<expression>kwargs["node"].type().category().name() in ("Object", "Sop", "Chop", "Top", "Vop") and kwargs["node"].isFlagWritable(hou.nodeFlag.Display)</expression>
+				</context>
+				<scriptCode>
+				<![CDATA[
+from importlib import reload
+from nodeweaver import tool_maker_tools
+reload(tool_maker_tools)
+tool_maker_tools.update_hda_sections()]]>
+				</scriptCode>
+			</scriptItem>
+			<scriptItem id="opmenu.nw_node_color_picker">
+				<label>Color Selected Nodes with Picker</label>
+				<context>
+					<expression>kwargs["node"].type().category().name() in ("Object", "Sop", "Chop", "Top", "Vop") and kwargs["node"].isFlagWritable(hou.nodeFlag.Display)</expression>
+				</context>
+				<scriptCode>
+				<![CDATA[
+from importlib import reload
+from nodeweaver import color_utils
+reload(color_utils)
+color_utils.colorSelectedNode(kwargs['node'])]]>
+				</scriptCode>
+			</scriptItem>
+			<scriptItem id="opmenu.nw_ref_to_parameter">
+				<label>Convert Parm References to Parameter Node Connections</label>
+				<context>
+					<expression>kwargs["node"].type().category().name() in ("Vop") and kwargs["node"].isFlagWritable(hou.nodeFlag.Display)</expression>
+				</context>
+				<scriptCode>
+				<![CDATA[
+from importlib import reload
+from nodeweaver import tool_maker_tools
+reload(tool_maker_tools)
+tool_maker_tools.convertParmReferencesToParmNodes(kwargs['node'])]]>
+				</scriptCode>
+			</scriptItem>
+			<scriptItem id="opmenu.nw_add_ref_to_parameter_all">
+				<label>Add Parameter Nodes For All Open Inputs on Node</label>
+				<context>
+					<expression>kwargs["node"].type().category().name() in ("Vop") and kwargs["node"].isFlagWritable(hou.nodeFlag.Display)</expression>
+				</context>
+				<scriptCode>
+				<![CDATA[
+from importlib import reload
+from nodeweaver import tool_maker_tools
+reload(tool_maker_tools)
+tool_maker_tools.createParameterInputsAll(kwargs['node'])]]>
+				</scriptCode>
+			</scriptItem>
+			<scriptItem id="opmenu.nw_del_ref_to_parameter_all">
+				<label>Process Parameter Nodes in Inputs for Nodes</label>
+				<context>
+					<expression>kwargs["node"].type().category().name() in ("Vop") and kwargs["node"].isFlagWritable(hou.nodeFlag.Display)</expression>
+				</context>
+				<scriptCode>
+				<![CDATA[
+from importlib import reload
+from nodeweaver import tool_maker_tools
+reload(tool_maker_tools)
+tool_maker_tools.processParameterInputsAll(kwargs['items'])]]>
+				</scriptCode>
+			</scriptItem>
+		</subMenu>
+	</menu>
+</menuDocument>

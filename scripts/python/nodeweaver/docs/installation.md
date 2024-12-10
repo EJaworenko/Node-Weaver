@@ -1,7 +1,7 @@
 <!-- omit in toc -->
 # Installation Guide
 
-> [← Back to main documentation](../README.md)
+> [← Back to main documentation](index.md)
 
 This guide walks you through installing Node Weaver in Houdini. Choose the installation method that works best for you.
 
