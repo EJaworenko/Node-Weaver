@@ -10,14 +10,29 @@ on:
 permissions:
   contents: write
   pages: write
+  id-token: write
 
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
           python-version: 3.x
-      - run: cd scripts/python/nodeweaver && pip install -e ".[docs]"
-      - run: cd scripts/python/nodeweaver && mkdocs gh-deploy --force
+      - name: Install dependencies
+        run: cd scripts/python/nodeweaver && pip install -e ".[docs]"
+      - name: Build docs
+        run: cd scripts/python/nodeweaver && mkdocs build
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: 'scripts/python/nodeweaver/site'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v3
