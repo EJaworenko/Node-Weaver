@@ -1,0 +1,19 @@
+name: Deploy Documentation
+
+on:
+  push:
+    branches:
+      - main
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: cd scripts/python/nodeweaver && pip install -e ".[docs]"
+      - run: cd scripts/python/nodeweaver && mkdocs gh-deploy --force

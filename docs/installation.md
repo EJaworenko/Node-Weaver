@@ -13,7 +13,7 @@ This guide walks you through installing Node Weaver in Houdini. Choose the insta
   - [Step 1: Download Node Weaver](#step-1-download-node-weaver)
   - [Step 2: Extract Files](#step-2-extract-files)
   - [Step 3: Set Up the Package](#step-3-set-up-the-package)
-  - [Step 4:Start Houdini](#step-4start-houdini)
+  - [Step 4: Start Houdini](#step-4-start-houdini)
 - [Method 2: Git Installation](#method-2-git-installation)
 - [Verifying Installation](#verifying-installation)
 - [Common Installation Paths](#common-installation-paths)
@@ -92,7 +92,7 @@ Example `nodeweaver.json`:
     ]
 ```
 
-### Step 4:Start Houdini
+### Step 4: Start Houdini
 - Close Houdini completely (if it was open)
 - Start Houdini
 
