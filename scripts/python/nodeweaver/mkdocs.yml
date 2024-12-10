@@ -1,34 +1,71 @@
 site_name: NodeWeaver
 site_description: A Houdini tool development framework
-repo_url: https://github.com/EJaworenko/nodeweaver
-repo_name: EJaworenko/nodeweaver
+repo_url: https://github.com/EJaworenko/Node-Weaver
+repo_name: EJaworenko/Node-Weaver
 
 theme:
   name: material
+  logo: assets/logo.svg
+  favicon: assets/favicon.png
+  icon:
+    logo: material/library
+  font:
+    code: Fira Code
+  custom_dir: overrides
   features:
     - navigation.tabs
-    - navigation.sections
     - navigation.expand
     - navigation.indexes
+    - navigation.top
+    - navigation.path
+    - navigation.footer
     - toc.integrate
     - search.suggest
     - search.highlight
+    - search.share
     - content.code.copy
+    - header.autohide
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  consent:
+    title: Cookie consent
+    description: >-
+      We use cookies to recognize your repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for. With your consent, you're helping us to
+      make our documentation better.
+  social:
+    - icon: personal/jaworenko-design
+      link: https://jaworenko.design
+      name: My Website
+    - icon: fontawesome/brands/github
+      link: https://github.com/EJaworenko
+      name: My Github
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/edwardmakesthings
+      name: My LinkedIn
+
+copyright: >
+  Copyright &copy; 2024 - 2025  |  Edward Jaworenko –
+  <a href="#__consent">Change cookie settings</a>
 
 markdown_extensions:
   - admonition
@@ -40,6 +77,12 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      options:
+        custom_icons:
+          - overrides/.icons
   - tables
   - toc:
       permalink: true
@@ -52,6 +95,7 @@ plugins:
   - literate-nav:
       nav_file: SUMMARY.md
   - section-index
+  - offline
   - mkdocstrings:
       default_handler: python
       handlers:
@@ -67,20 +111,23 @@ plugins:
             merge_init_into_class: true
             show_root_full_path: false
             separate_signature: true
+            show_extension: false
 
 nav:
   - Home: index.md
-  - Features:
-    - Overview: features/README.md
-    - Color Palette: features/color-palette.md
-    - Node Shape: features/node-shape.md
-    - Tool Maker Tools: features/tool-maker-tools.md
-  - API Reference: reference/
-  - Development:
-    - Installation: installation.md
-    - Contributing: contributing.md
-    - Git Guide: git-guide.md
+  - User Guide:
+    - Getting Started:
+      - Installation: installation.md
+      - Git Basics: git-guide.md
+    - Features:
+      - Overview: features/index.md
+      - Color Palette: features/color-palette.md
+      - Node Shape: features/node-shape.md
+      - Tool Maker Tools: features/tool-maker-tools.md
     - Troubleshooting: troubleshooting.md
+  - API Reference: reference/
+  - Developer Guide:
+    - Contributing: contributing.md
 
 watch:
   - .

@@ -1,7 +1,7 @@
 <!-- omit in toc -->
 # Color Palette Configurator HDA
 
-> [← Back to features](README.md)
+> [← Back to features](index.md)
 
 The Color Palette Configurator makes it easy to customize Houdini's node colors. I created this tool to make network organization more flexible and visually appealing.
 

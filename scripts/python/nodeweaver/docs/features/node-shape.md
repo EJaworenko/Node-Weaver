@@ -1,7 +1,7 @@
 <!-- omit in toc -->
 # Node Shape Creator HDA
 
-> [← Back to features](README.md)
+> [← Back to features](index.md)
 
 The Node Shape Creator makes it easy to design custom node shapes in Houdini. [Credit to Simon Fiedler and Bastian Schiffer](https://vimeo.com/221182957) for doing the initial exploration years ago.
 
