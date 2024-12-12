@@ -79,7 +79,7 @@ sudo apt-get install git
 cd Documents
 
 # 3. Get Node Weaver
-git clone https://github.com/EJaworenko/Node-Weaver.git
+git clone https://github.com/edwardmakesthings/Node-Weaver.git
 ```
 
 ### Updating Node Weaver
@@ -145,8 +145,8 @@ git pull origin main --allow-unrelated-histories
    ```
 
 ### Still Stuck?
-1. Check if others had the same issue in the [Issues section](https://github.com/EJaworenko/Node-Weaver/issues)
-2. If not, feel free to [open a new issue](https://github.com/EJaworenko/Node-Weaver/issues/new)
+1. Check if others had the same issue in the [Issues section](https://github.com/edwardmakesthings/Node-Weaver/issues)
+2. If not, feel free to [open a new issue](https://github.com/edwardmakesthings/Node-Weaver/issues/new)
 3. Include:
    - What you were trying to do
    - The exact error message

@@ -184,5 +184,5 @@ Linux: /home/YourUsername/HoudiniTools/NodeWeaver/config/opColorPalette.def
 ### Need Help?
 If you run into issues:
 1. Check if restarting Houdini helps
-2. Look through [existing issues](https://github.com/EJaworenko/Node-Weaver/issues)
-3. [Open a new issue](https://github.com/EJaworenko/Node-Weaver/issues/new)
+2. Look through [existing issues](https://github.com/edwardmakesthings/Node-Weaver/issues)
+3. [Open a new issue](https://github.com/edwardmakesthings/Node-Weaver/issues/new)

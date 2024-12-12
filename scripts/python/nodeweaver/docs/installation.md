@@ -45,7 +45,7 @@ Need more detail? Read on!
 ## Method 1: Simple Installation
 
 ### Step 1: Download Node Weaver
-1. Visit the [releases page](https://github.com/EJaworenko/Node-Weaver/releases)
+1. Visit the [releases page](https://github.com/edwardmakesthings/Node-Weaver/releases)
 2. Find the latest release
 3. Click "Source code (zip)" under Assets
 4. Save the zip file anywhere
@@ -107,7 +107,7 @@ This method makes updating easier but requires Git. New to Git? Check my [Git Gu
    ```
 3. Clone the repository:
    ```bash
-   git clone https://github.com/EJaworenko/Node-Weaver.git
+   git clone https://github.com/edwardmakesthings/Node-Weaver.git
    ```
 4. Follow Steps 3-4 from Method 1 above
 
@@ -176,7 +176,7 @@ In Houdini:
 
 ### Need More Help?
 - See the [Troubleshooting Guide](troubleshooting.md)
-- [Open an issue](https://github.com/EJaworenko/Node-Weaver/issues)
+- [Open an issue](https://github.com/edwardmakesthings/Node-Weaver/issues)
 - Check existing issues for solutions
 
 Remember: If something's not working, don't hesitate to ask for help!

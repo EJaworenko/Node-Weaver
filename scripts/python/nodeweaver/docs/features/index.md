@@ -48,6 +48,6 @@ Each tool has its own documentation page with:
 If you run into any issues or have questions:
 1. Check the individual tool documentation
 2. Look at the [troubleshooting guide](../troubleshooting.md)
-3. [Open an issue](https://github.com/EJaworenko/Node-Weaver/issues) if you're still stuck
+3. [Open an issue](https://github.com/edwardmakesthings/Node-Weaver/issues) if you're still stuck
 
 I appreciate all feedback and bug reports - they help make these tools better!

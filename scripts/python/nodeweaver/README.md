@@ -20,8 +20,8 @@ pip install -e ".[docs]"
 
 ## 📚 Documentation
 
-- [Online Documentation](https://ejaworenko.github.io/Node-Weaver/)
-- [API Reference](https://ejaworenko.github.io/Node-Weaver/reference/)
+- [Online Documentation](https://edwardmakesthings.github.io/Node-Weaver/)
+- [API Reference](https://edwardmakesthings.github.io/Node-Weaver/reference/)
 
 ## ⚙️ Requirements
 
@@ -33,4 +33,4 @@ pip install -e ".[docs]"
 
 Released under GNU General Public License v3.0
 
-[Full Documentation](https://ejaworenko.github.io/Node-Weaver/)  |  [GitHub Repository](https://github.com/EJaworenko/Node-Weaver)
+[Full Documentation](https://edwardmakesthings.github.io/Node-Weaver/)  |  [GitHub Repository](https://github.com/edwardmakesthings/Node-Weaver)

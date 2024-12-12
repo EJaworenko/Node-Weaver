@@ -63,14 +63,14 @@ Questions help improve the documentation and identify unclear areas:
 ## How to Submit Contributions
 
 ### For Bug Reports and Feature Requests:
-1. Go to [Issues](https://github.com/EJaworenko/Node-Weaver/issues)
+1. Go to [Issues](https://github.com/edwardmakesthings/Node-Weaver/issues)
 2. Click "New Issue"
 3. Choose the appropriate template
 4. Fill in the details
 5. Submit!
 
 ### For Questions and Discussion:
-1. Go to [Discussions](https://github.com/EJaworenko/Node-Weaver/discussions)
+1. Go to [Discussions](https://github.com/edwardmakesthings/Node-Weaver/discussions)
 2. Choose the appropriate category
 3. Share your thoughts!
 

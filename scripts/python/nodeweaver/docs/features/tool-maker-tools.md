@@ -63,5 +63,5 @@ Once I get more tools into here I'm sure troubleshooting will fill out.
 ### Need Help?
 If you encounter issues:
 1. Try restarting Houdini
-2. Check [existing issues](https://github.com/EJaworenko/Node-Weaver/issues)
-3. [Open a new issue](https://github.com/EJaworenko/Node-Weaver/issues/new)
+2. Check [existing issues](https://github.com/edwardmakesthings/Node-Weaver/issues)
+3. [Open a new issue](https://github.com/edwardmakesthings/Node-Weaver/issues/new)

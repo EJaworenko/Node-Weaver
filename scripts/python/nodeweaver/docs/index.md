@@ -1,7 +1,7 @@
 # Node Weaver
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![GitHub release (latest by date including pre-release)](https://img.shields.io/github/v/release/EJaworenko/Node-Weaver?include_prereleases)](https://github.com/EJaworenko/Node-Weaver/releases)
+[![GitHub release (latest by date including pre-release)](https://img.shields.io/github/v/release/edwardmakesthings/Node-Weaver?include_prereleases)](https://github.com/edwardmakesthings/Node-Weaver/releases)
 [![Houdini 19.5](https://img.shields.io/badge/Houdini-19.5%2B-orange)](https://www.sidefx.com/download/)
 
 Node Weaver is a comprehensive toolset for Houdini Technical Directors that streamlines tool creation and customization workflows. Whether you're building HDAs, managing node networks, or customizing the Houdini interface, Node Weaver provides utilities to make your work more efficient.
@@ -49,12 +49,12 @@ Node Weaver is a comprehensive toolset for Houdini Technical Directors that stre
 ## Installation Options
 
 ### Simple Download (Recommended for Beginners)
-1. Download the [latest release](https://github.com/EJaworenko/Node-Weaver/releases)
+1. Download the [latest release](https://github.com/edwardmakesthings/Node-Weaver/releases)
 2. Follow my [simple installation guide](installation.md#method-1-simple-installation)
 
 ### Git Installation (For Automatic Updates)
 ```bash
-git clone https://github.com/EJaworenko/Node-Weaver.git
+git clone https://github.com/edwardmakesthings/Node-Weaver.git
 ```
 Then follow my [Git-based installation guide](installation.md#method-2-git-installation)
 
@@ -79,11 +79,11 @@ If you're not comfortable with Git yet, use the [Simple Download](#simple-downlo
 The project is small, but I welcome contributions of any kind! If you're new to open source check out:
 1. My [Git Guide](git-guide.md) for version control basics
 2. GitHub's guide on [Creating a Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
-3. The [issues page](https://github.com/EJaworenko/Node-Weaver/issues) for beginner-friendly tasks
+3. The [issues page](https://github.com/edwardmakesthings/Node-Weaver/issues) for beginner-friendly tasks
 
 ## Getting Help
 
-- [Open an issue](https://github.com/EJaworenko/Node-Weaver/issues) for bugs or feature requests
+- [Open an issue](https://github.com/edwardmakesthings/Node-Weaver/issues) for bugs or feature requests
 - Check [troubleshooting](troubleshooting.md) for common issues
 - Review existing issues before creating new ones
 - Don't hesitate to ask questions - I'm here to help!

@@ -111,12 +111,12 @@ git stash pop
 
 ### Before Asking for Help
 1. Check if your issue is listed in this guide
-2. Search existing [GitHub issues](https://github.com/EJaworenko/Node-Weaver/issues)
+2. Search existing [GitHub issues](https://github.com/edwardmakesthings/Node-Weaver/issues)
 3. Try the solutions mentioned above
 4. Collect relevant error messages
 
 ### How to Report an Issue
-1. Go to the [Issues page](https://github.com/EJaworenko/Node-Weaver/issues)
+1. Go to the [Issues page](https://github.com/edwardmakesthings/Node-Weaver/issues)
 2. Click "New Issue"
 3. Include:
    - What you were trying to do

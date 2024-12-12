@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: 3.x
       - name: Install dependencies
-        run: cd scripts/python/nodeweaver && pip install -e ".[docs]"
+        run: cd scripts/python/nodeweaver && pip install ".[docs]"
       - name: Build docs
         run: cd scripts/python/nodeweaver && mkdocs build
       - name: Setup Pages

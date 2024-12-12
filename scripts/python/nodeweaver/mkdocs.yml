@@ -1,7 +1,7 @@
-site_name: NodeWeaver
+site_name: Node Weaver
 site_description: A Houdini tool development framework
-repo_url: https://github.com/EJaworenko/Node-Weaver
-repo_name: EJaworenko/Node-Weaver
+repo_url: https://github.com/edwardmakesthings/Node-Weaver
+repo_name: edwardmakesthings/Node-Weaver
 
 theme:
   name: material
@@ -57,7 +57,7 @@ extra:
       link: https://jaworenko.design
       name: My Website
     - icon: fontawesome/brands/github
-      link: https://github.com/EJaworenko
+      link: https://github.com/edwardmakesthings
       name: My Github
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/edwardmakesthings
