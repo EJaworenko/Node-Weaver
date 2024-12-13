@@ -50,7 +50,7 @@ class CustomNodeShapeCreator:
             TypeError: If node is not of type hou.Node
         """
         self.node = node
-        self.builder = NetworkBuilder(node.parent())
+        self.builder = NetworkBuilder(node)
 
     def create_example(self) -> None:
         """Create an example node shape network.
@@ -97,8 +97,27 @@ class CustomNodeShapeCreator:
         if not template_name:
             raise ValueError(f"Invalid example index: {example}")
 
+        # Create subnet and output
+        subnet = self.node.parent().createNode("subnet")
+        subnet.setName(template_name, unique_name=True)
+        subnet.setPosition(self.node.position() + hou.Vector2(0, 1))
+        self.node.setInput(0, subnet)
+
+        # Create output node for final connections
+        output = subnet.createNode("output", "OUT")
+        output.setPosition(hou.Vector2(0, 0))
+        for conn in subnet.indirectInputs():
+            conn.setPosition(hou.Vector2(4, 0))
+
+        # Create network builder with proper nodes
+        self.builder = NetworkBuilder(
+            parent_node=subnet,
+            reference_node=self.node,
+            output_node=output
+        )
+
         # Build network from template
-        self.builder.build_from_template(template_name)
+        self.builder.build_from_template(template_name, remap_dict={"<subnet>": subnet.name()})
         self.update_path()
         self.update_size()
 
@@ -188,13 +207,17 @@ class CustomNodeShapeCreator:
         if self.node.input(0):
             bounds = self.node.node("Set_groups_colors").geometry().boundingBox().sizevec()
             bounds = (round(bounds[0], 2), round(bounds[1], 2))
+            bounds_all = self.node.node("Set_groups_colors").geometry().boundingBox().sizevec()
+            bounds_all = (round(bounds_all[0], 2), round(bounds_all[1], 2))
 
-            self.node.parm("lbl_size").set(f"{bounds[0]} x {bounds[1]}")
+            self.node.parm("lbl_size").set(f"{bounds_all[0]} x {bounds_all[1]}")
 
             if self.node.evalParm("restrict_to_shape"):
                 self.node.parm("icon_scale").set(
                     min(bounds[0], bounds[1], self.node.evalParm("icon_scale"))
                 )
+        else:
+            self.node.parm("lbl_size").set("Invalid Input")
 
 """Callback functions for the custom node shape creator."""
 
@@ -295,3 +318,19 @@ def on_update_size(kwargs: Dict[str, Any]) -> None:
     """
     creator = CustomNodeShapeCreator(kwargs["node"])
     creator.update_size()
+
+def avg_node_shape_info() -> None:
+    """Displays a message about the average node shape size."""
+    hou.ui.displayMessage(
+"""Sizes (X/Y):
+- Average Houdini node size: 1x0.3
+- Average icons size: 0.24 x 0.24
+- Default circle shape is 0.57x0.57 with 0.21x0.21 icon
+Input/Output Dot Coordinates (Y only):
+- Input dot placement ranges from 0.38 to 0.51.
+- Output dot placement ranges from -0.09 to -0.2.
+- The median input and output dot placement is 0.38 and -0.09
+
+This node will try and make any node shape you design fit nicely
+with the default icons, but may need tweaking if it looks wrong.""",
+    title="Standard Houdini Node Shape Stats")

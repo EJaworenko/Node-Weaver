@@ -118,7 +118,7 @@ class ExpressionParser:
         return parser.create_nodes_from_parameters(parms_data, match_reference_parm_names, parameters_as_subnet_connectors)
 
 
-def convert_references_to_nodes(node: hou.Node,
+def convert_references_to_parameter_nodes(node: hou.Node,
                               process_subnodes: bool = None,
                               match_reference_names: bool = None,
                               use_subnet_connectors: bool = None) -> None:

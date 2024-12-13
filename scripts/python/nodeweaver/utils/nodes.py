@@ -107,26 +107,36 @@ class NetworkBuilder:
         _created_nodes: Dictionary mapping node names to created nodes
 
     Example:
-        >>> builder = NetworkBuilder(hou.node('/obj'))
+        >>> builder = NetworkBuilder(hou.node('/obj/target_node'))
         >>> last_node = builder.build_from_template("my_template")
 
     Since: 1.0.0
     """
 
-    def __init__(self, parent_node: hou.Node):
+    def __init__(self, parent_node: hou.Node,
+                reference_node: hou.Node = None,
+                output_node: hou.Node = None) -> None:
         """Initialize with parent node for network creation.
 
         Args:
-            parent_node: Node that will contain the network
+            parent_node: Parent node for network creation
+            reference_node: Node that is referenced if name isn't supplied in
+                node data.
+            output_node: Node to use as output if not specified in template
         """
         self.parent = parent_node
+        self.reference = reference_node if reference_node else parent_node
+        self.output = output_node
         self._created_nodes: Dict[str, hou.Node] = {}
 
-    def build_from_template(self, template_name: str) -> Optional[hou.Node]:
+    def build_from_template(self, template_name: str, remap_dict: Dict[str, str]= None) -> Optional[hou.Node]:
         """Build a network from a named template in the config file.
 
         Args:
             template_name: Name of template in example_networks.json
+            remap_dict: Dictionary mapping old node names to new names. Used to
+                replace template tokens with string values. Applies to node names
+                and string parameter values.
 
         Returns:
             The last created node or None if build fails
@@ -164,39 +174,48 @@ class NetworkBuilder:
         # Create nodes from tree
         last_node = None
         for node_data in template["tree"]:
-            last_node = self._create_node(node_data)
+            last_node = self._create_node(node_data, remap_dict)
 
         return last_node
 
-    def _create_node(self, node_data: Dict[str, Any]) -> Optional[hou.Node]:
+    def _create_node(self, node_data: Dict[str, Any], remap_dict: Dict[str, str]) -> Optional[hou.Node]:
         """Create or configure a node based on template data.
 
         Args:
             node_data: Dictionary containing node configuration data
+            remap_dict: Dictionary mapping old node names to new names. Used to
+                replace template tokens with string values. Applies to node names
+                and string parameter values.
 
         Returns:
             Created/configured node
         """
-        # Determine target node - either create new or use HDA
+        # Determine target node - either create new or reference
         if "name" in node_data:
             parent = (self._created_nodes[node_data["subnet"]]
                     if "subnet" in node_data else self.parent)
-            node = parent.createNode(node_data["type_name"], node_data["name"])
-            self._created_nodes[node_data["name"]] = node
+            node_name = self.apply_remap(node_data["name"], remap_dict)
+            node = parent.createNode(node_data["type_name"], node_name)
+            self._created_nodes[node_name] = node
 
             if "pos" in node_data:
                 node.setPosition(hou.Vector2(node_data["pos"]))
 
             if "flags" in node_data:
                 node.setRenderFlag("render" in node_data["flags"])
-                node.setDisplayFlag("display" in node_data["flags"] and "nodisplay" not in node_data["flags"])
+                node.setDisplayFlag(
+                    "display" in node_data["flags"] and
+                    "nodisplay" not in node_data["flags"]
+                )
         else:
-            node = self.parent
+            # Use reference node if no name specified
+            node = self.reference
 
         # Configure parameters
         for parm_type in ["parms", "parmtuples", "expressions"]:
             if parm_type in node_data:
                 for name, value in node_data[parm_type].items():
+                    value = self.apply_remap(value, remap_dict)
                     if parm_type == "parms":
                         node.parm(name).set(value)
                     elif parm_type == "parmtuples":
@@ -209,6 +228,26 @@ class NetworkBuilder:
             for i, input_name in enumerate(node_data["inputs"]):
                 input_node = self._created_nodes.get(input_name)
                 if input_node:
-                    node.setInput(i, input_node)
+                    if node == self.reference and self.output:
+                        # If this is the reference node, connect to output
+                        self.output.setInput(i, input_node)
+                    else:
+                        node.setInput(i, input_node)
 
         return node
+
+    def apply_remap(self, target_string: str, remap_dict: Dict[str, str] = None) -> str:
+        """Replace template tokens with actual values using remap dictionary.
+
+        Args:
+            target_string: String to replace tokens in
+            remap_dict: Dictionary mapping old values to new strings
+
+        Returns:
+            String with tokens replaced
+        """
+        if remap_dict is None or not isinstance(target_string, str):
+            return target_string
+        for old_name, new_name in remap_dict.items():
+            target_string = target_string.replace(old_name, new_name)
+        return target_string

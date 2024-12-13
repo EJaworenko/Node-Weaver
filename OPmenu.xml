@@ -28,10 +28,8 @@ window.showWindow()]]>
 				</context>
 				<scriptCode>
 				<![CDATA[
-from importlib import reload
-from nodeweaver import tool_maker_tools
-reload(tool_maker_tools)
-tool_maker_tools.update_hda_sections()]]>
+from nodeweaver.utils.hda import update_hda_sections_from_source_files
+update_hda_sections_from_source_files()]]>
 				</scriptCode>
 			</scriptItem>
 			<scriptItem id="opmenu.nw_node_color_picker">
@@ -41,10 +39,8 @@ tool_maker_tools.update_hda_sections()]]>
 				</context>
 				<scriptCode>
 				<![CDATA[
-from importlib import reload
-from nodeweaver import color_utils
-reload(color_utils)
-color_utils.colorSelectedNode(kwargs['node'])]]>
+from nodeweaver.utils.colors import color_selected_nodes
+color_selected_nodes(kwargs['node'])]]>
 				</scriptCode>
 			</scriptItem>
 			<scriptItem id="opmenu.nw_ref_to_parameter">
@@ -54,10 +50,8 @@ color_utils.colorSelectedNode(kwargs['node'])]]>
 				</context>
 				<scriptCode>
 				<![CDATA[
-from importlib import reload
-from nodeweaver import tool_maker_tools
-reload(tool_maker_tools)
-tool_maker_tools.convertParmReferencesToParmNodes(kwargs['node'])]]>
+from nodeweaver.core.expr_to_nodes import convert_references_to_parameter_nodes
+convert_references_to_parameter_nodes(kwargs['node'])]]>
 				</scriptCode>
 			</scriptItem>
 			<scriptItem id="opmenu.nw_add_ref_to_parameter_all">
@@ -67,10 +61,8 @@ tool_maker_tools.convertParmReferencesToParmNodes(kwargs['node'])]]>
 				</context>
 				<scriptCode>
 				<![CDATA[
-from importlib import reload
-from nodeweaver import tool_maker_tools
-reload(tool_maker_tools)
-tool_maker_tools.createParameterInputsAll(kwargs['node'])]]>
+from nodeweaver.core.expr_to_nodes import create_parameter_inputs
+create_parameter_inputs(kwargs['node'])]]>
 				</scriptCode>
 			</scriptItem>
 			<scriptItem id="opmenu.nw_del_ref_to_parameter_all">
@@ -80,10 +72,8 @@ tool_maker_tools.createParameterInputsAll(kwargs['node'])]]>
 				</context>
 				<scriptCode>
 				<![CDATA[
-from importlib import reload
-from nodeweaver import tool_maker_tools
-reload(tool_maker_tools)
-tool_maker_tools.processParameterInputsAll(kwargs['items'])]]>
+from nodeweaver.core.expr_to_nodes import process_parameter_inputs
+process_parameter_inputs(kwargs['items'])]]>
 				</scriptCode>
 			</scriptItem>
 		</subMenu>

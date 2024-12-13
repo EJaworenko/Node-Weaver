@@ -7,7 +7,7 @@
     "version": "19.5.455",
     "env": [
         {
-            "NODEWEAVER": "C:/Users/YourUsername/Documents/HoudiniTools/NodeWeaver"
+            "NODEWEAVER": "C:/Users/YourUsername/Documents/HoudiniTools/Node-Weaver"
         }
     ]
 }

@@ -44,7 +44,7 @@ def is_parm_of_type(parm:hou.Parm,
     return False
 
 
-def all_parm_templates(group_or_folder: Union[hou.ParmTemplateGroup, hou.FolderParmTemplate]) -> Generator[hou.ParmTemplate]:
+def all_parm_templates(group_or_folder: Union[hou.ParmTemplateGroup, hou.FolderParmTemplate]) -> Generator[hou.ParmTemplate, None, None]:
     """Get all parameter templates from a group or folder.
 
     Recursively retrieves all parameter templates, including those nested in folders,

@@ -29,7 +29,7 @@ import math
 import json
 import hou
 from labsopui import screensampling
-from nodeweaver.utils import colors
+from nodeweaver.utils import colors as color_util
 
 
 class ColorPaletteConfigurator:
@@ -109,7 +109,7 @@ class ColorPaletteConfigurator:
                 return
 
         file_path = self.node.parm("file").evalAsString()
-        if not colors.validate_palette_file(file_path):
+        if not color_util.validate_palette_file(file_path):
             return
 
         mparm.set(0)
@@ -125,7 +125,7 @@ class ColorPaletteConfigurator:
                 mparm.insertMultiParmInstance(i)
                 self.node.parmTuple(f"rgb{i+1}").set(color)
                 self.node.parm(f"hex{i+1}").set(
-                    colors.float_rgb_to_hex(float(color[0]), float(color[1]), float(color[2]))
+                    color_util.float_rgb_to_hex(float(color[0]), float(color[1]), float(color[2]))
                 )
 
     def export_colors(self) -> None:
@@ -149,7 +149,7 @@ class ColorPaletteConfigurator:
             return
 
         file_path = self.node.parm("file").evalAsString()
-        if not colors.validate_palette_file(file_path, importing=False):
+        if not color_util.validate_palette_file(file_path, importing=False):
             return
 
         mparm = self.node.parm("colors")
@@ -189,7 +189,7 @@ class ColorPaletteConfigurator:
                                buttons=("Yes", "No")) == 1:
             return
 
-        default_colors = colors.load_default_palette()
+        default_colors = color_util.load_default_palette()
         default_colors.reverse()
         mparm = self.node.parm("colors")
         mparm.set(0)
@@ -198,7 +198,7 @@ class ColorPaletteConfigurator:
             mparm.insertMultiParmInstance(i)
             self.node.parmTuple(f"rgb{i+1}").set(color)
             self.node.parm(f"hex{i+1}").set(
-                colors.float_rgb_to_hex(color[0], color[1], color[2])
+                color_util.float_rgb_to_hex(color[0], color[1], color[2])
             )
 
     def update_hex(self, kwargs: Dict) -> None:
@@ -216,7 +216,7 @@ class ColorPaletteConfigurator:
             >>> # node.parm('r').set(255)  # Triggers hex update
         """
         value = self.node.parmTuple(kwargs["script_parm"]).evalAsFloats()
-        hex = colors.float_rgb_to_hex(value[0], value[1], value[2])
+        hex = color_util.float_rgb_to_hex(value[0], value[1], value[2])
         self.node.parm(f"hex{kwargs['script_multiparm_index']}").set(hex)
 
     def update_rgb(self, kwargs: Dict) -> None:
@@ -233,7 +233,7 @@ class ColorPaletteConfigurator:
             >>> # Automatically called when hex parameter changes
             >>> # node.parm('hex').set('#FF0000')  # Triggers RGB update
         """
-        hex = colors.hex_to_float_rgb(kwargs["script_value0"])
+        hex = color_util.hex_to_float_rgb(kwargs["script_value0"])
         self.node.parmTuple(f"rgb{kwargs['script_multiparm_index']}").set(hex)
 
 
@@ -328,7 +328,7 @@ class GradientManager:
                 colors.insertMultiParmInstance(iter)
                 self.node.parmTuple(f"rgb{iter+1}").set(color)
                 self.node.parm(f"hex{iter+1}").set(
-                    colors.float_rgb_to_hex(float(color[0]), float(color[1]), float(color[2]))
+                    color_util.float_rgb_to_hex(float(color[0]), float(color[1]), float(color[2]))
                 )
 
         if self.node.parm("tog_del_grad").eval():
@@ -431,7 +431,7 @@ class GradientManager:
         self.node.parm("cosine_presets").set(0)
 
 
-def sample_screen_color(kwargs: Dict) -> None:
+def sample_screen_color(kwargs: Dict, ramp_parm_name: str) -> None:
     """
     Sample a color from the screen using a custom python state from SideFX Labs.
     The sampled color is applied to the parameter specified in the kwargs.
@@ -444,7 +444,7 @@ def sample_screen_color(kwargs: Dict) -> None:
         This is a wrapper around screensampling.sample_ramp_color() that
         handles the parameter formatting required by the underlying function.
     """
-    screensampling.sample_ramp_color(kwargs["parms"])
+    screensampling.sample_ramp_color([kwargs['node'].parm(ramp_parm_name)])
 
 
 class TextColorManager:
@@ -557,7 +557,7 @@ class TextColorManager:
         for color in text_colors:
             iter = [colors_parm.eval(), 0][top]
             colors_parm.insertMultiParmInstance(iter)
-            self.node.parmTuple(f"rgb{iter+1}").set(colors.hex_to_float_rgb(color))
+            self.node.parmTuple(f"rgb{iter+1}").set(color_util.hex_to_float_rgb(color))
             self.node.parm(f"hex{iter+1}").set(color)
 
         if count:
@@ -587,7 +587,7 @@ class TextColorManager:
 
         basis = [hou.rampBasis.Linear] * count
         keys = [(float(1)/(count-1))*i for i in range(count)]
-        values = [colors.hex_to_float_rgb(color) for color in text_colors]
+        values = [color_util.hex_to_float_rgb(color) for color in text_colors]
 
         ramp = hou.Ramp(basis, keys, values)
         self.node.parm("sample_grad").set(ramp)

@@ -6,11 +6,12 @@
  a single file. -->
 
   <toolshelf name="nodeWeaver" label="Node Weaver">
+    <memberTool name="tool_1"/>
     <memberTool name="findNodeScripts"/>
   </toolshelf>
 
   <tool name="findNodeScripts" label="Print Node Scripts" icon="$NODEWEAVER/help/icons/nodeweaver_node_weaver.svg">
-    <script scriptType="python"><![CDATA[from nodeweaver.tool_maker_tools import search_for_scripts
-search_for_scripts()]]></script>
+    <script scriptType="python"><![CDATA[from nodeweaver.core import ScriptInspector
+ScriptInspector().print_scripts_in_selected_nodes()]]></script>
   </tool>
 </shelfDocument>

@@ -46,3 +46,12 @@ def warn_if_manual_mode(mode: str = "simple", custom: str = "") -> bool:
         hou.ui.displayMessage(textwrap.fill(custom + dialog), ("OK",))
         return True
     return False
+
+
+def reload_node_shapes() -> None:
+    """Reload all node shapes in the current Network Editor pane.
+
+    Forces a refresh of all node shapes, in the Network Editor. This is
+    useful after modifying node shapes as Node Weaver does.
+    """
+    hou.ui.paneTabOfType(hou.paneTabType.NetworkEditor).reloadNodeShapes()
